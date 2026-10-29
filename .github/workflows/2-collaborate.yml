@@ -61,7 +61,7 @@ jobs:
 
       - name: Disable current workflow and enable next one
         run: |
-          gh workflow disable "${{github.workflow}}"
-          gh workflow enable "Step 3"
+          gh api --method PUT "repos/${{ github.repository }}/actions/workflows/2-collaborate.yml/disable"
+          gh api --method PUT "repos/${{ github.repository }}/actions/workflows/3-prepare-environment.yml/enable"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
